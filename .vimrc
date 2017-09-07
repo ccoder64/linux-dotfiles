@@ -25,13 +25,19 @@ set ignorecase
 set smartcase
 set autoindent
 set smartindent
-set expandtab ts=4 sts=4 sw=4
+set autowrite
+set gcr=a:block-blinkon0
+set lcs=tab:>-,trail:-
+let mapleader = ";"
+
+set ts=4 sts=4 sw=4
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=usc-bom,utf-8,chinese,gb18030
 set termencoding=utf-8
-let mapleader = ";"
+set ff=unix
 
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -54,28 +60,49 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'taglist.vim'
 Plugin 'a.vim'
-Plugin 'fatih/vim-go'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-scripts/cpp.vim--Skvirsky'
+Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'fatih/vim-go'
+"Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 filetype plugin indent on
-syntax on
+syntax enable
 
 if !empty(findfile("colors/Tomorrow-Night.vim", &rtp))
-   colorscheme Tomorrow-Night
+    colorscheme Tomorrow-Night
 endif
 
+nmap <F4> @q
+nmap <slient> <F8> :WMToggle<cr>
+nmap <C-N> :tn<CR>
+nmap <leader>ch :A<C>
+map <C-]> g<C-]>
+vmap <Enter> <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+nmap s <Plug>(easymotion-s2)
+nmap mm :GitGutterNextHunk<CR>
+nmap mn :GitGutterPrevHunk<CR>
+nmap mr :GitGutterRevertHunk<CR>
+map <F6> :vimgrep <cword> *.cpp *.h<CR>
+map <F7> :vimgrep <cword> **/*.h **/*.cpp<CR>
+
+let g:airline_theme='bubblegum'
+let g:airline#extensions#hunks#enabled = 0
+
 
 augroup vimrcEx
-   au!
-   autocmd FileType text setlocal textwidth=78
-   autocmd FileType python set omnifunc=pythoncomplete#Complete
-   autocmd FileType python set noexpandtab
-
-   autocmd BufReadPost *
-               \ if line("'\"") > 1 && line("'\"") <= line("$") |
-               \   exe "normal! g`\"" |
-               \ endif
+    au!
+    autocmd FileType text setlocal textwidth=78
+    autocmd FileType python set omnifunc=pythoncomplete#Complete
+    autocmd FileType python set ts=4 sts=4 sw=4 expandtab
+	autocmd FileType python set textwidth=79
+	autocmd FileType c,cpp,h set ts=4 sw=4 sts=4 noexpandtab
+	autocmd FileType c,cpp,h set cinoptions+=g0-N-s
+    autocmd BufReadPost *
+                \ if line("'\"") > 1 && line("'\"") <= line("$") |
+                \   exe "normal! g`\"" |
+                \ endif
 augroup END
 
