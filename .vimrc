@@ -59,6 +59,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'taglist.vim'
 Plugin 'a.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'vim-scripts/cpp.vim--Skvirsky'
 Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'fatih/vim-go'
@@ -95,7 +96,7 @@ augroup vimrcEx
     autocmd FileType text setlocal textwidth=78
     autocmd FileType python set omnifunc=pythoncomplete#Complete
     autocmd FileType python set ts=4 sts=4 sw=4 expandtab
-	autocmd FileType python set textwidth=79
+	autocmd FileType python set textwidth=79 nowrap
 	autocmd FileType c,cpp,h set ts=4 sw=4 sts=4 noexpandtab
 	autocmd FileType c,cpp,h set cinoptions+=g0-N-s
     autocmd BufReadPost *
@@ -109,4 +110,12 @@ command! JsonFormat :execute '%!python -m json.tool'
   \ | :%s/ \+$//ge
   \ | :set ft=javascript
   \ | :1
+
+if executable('ag')
+	set grepprg=ag\ --nogroup\ --nocolor
+	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+	let g:ctrlp_use_caching = 0
+	let g:ackprg = 'ag --vimgrep'
+endif
+nnoremap <C-G> :Ack<CR>
 
