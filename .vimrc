@@ -48,12 +48,11 @@ Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
 "Plugin 'SirVer/ultisnips'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'hynek/vim-python-pep8-indent'
+"Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'tsaleh/vim-tmux'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Yggdroot/indentLine'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'scrooloose/nerdcommenter'
@@ -91,7 +90,6 @@ map <F7> :vimgrep <cword> **/*.h **/*.cpp<CR>
 let g:airline_theme='bubblegum'
 let g:airline#extensions#hunks#enabled = 0
 
-
 augroup vimrcEx
     au!
     autocmd FileType text setlocal textwidth=78
@@ -105,4 +103,10 @@ augroup vimrcEx
                 \   exe "normal! g`\"" |
                 \ endif
 augroup END
+
+command! JsonFormat :execute '%!python -m json.tool'
+  \ | :execute '%!python -c "import re,sys;chr=__builtins__.__dict__.get(\"unichr\", chr);sys.stdout.write(re.sub(r\"\\u[0-9a-f]{4}\", lambda x: chr(int(\"0x\" + x.group(0)[2:], 16)), sys.stdin.read()))"'
+  \ | :%s/ \+$//ge
+  \ | :set ft=javascript
+  \ | :1
 
