@@ -33,3 +33,9 @@ export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
+export EDITOR=vim
+export HISTSIZE=30000
+export HISTTIMEFORMAT="%F %T "
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+unset HISTCONTROL
+
