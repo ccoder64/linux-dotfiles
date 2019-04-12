@@ -1,5 +1,5 @@
 "
-"author : git@liuyue.me
+"author : ccoder64
 "
 set t_Co=256
 set nocompatible
@@ -17,7 +17,6 @@ set nocp
 set number
 set cursorline
 set foldmethod=indent
-set foldmethod=syntax
 set nofoldenable
 set hlsearch
 set incsearch
