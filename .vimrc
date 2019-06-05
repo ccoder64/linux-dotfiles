@@ -89,6 +89,7 @@ map <F7> :vimgrep <cword> **/*.h **/*.cpp<CR>
 
 let g:airline_theme='bubblegum'
 let g:airline#extensions#hunks#enabled = 0
+let g:NERDSpaceDelims = 1
 
 augroup vimrcEx
     au!
