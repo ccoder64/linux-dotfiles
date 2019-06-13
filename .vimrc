@@ -12,7 +12,7 @@ set showcmd
 set mouse=a
 set laststatus=2
 set hidden
-set wrap
+set nowrap
 set nocp
 set number
 set cursorline
