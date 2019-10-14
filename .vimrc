@@ -61,6 +61,7 @@ Plugin 'a.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'vim-scripts/cpp.vim--Skvirsky'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
 "Plugin 'fatih/vim-go'
 "Plugin 'Valloric/YouCompleteMe'
 
@@ -86,6 +87,8 @@ nmap mn :GitGutterPrevHunk<CR>
 nmap mr :GitGutterRevertHunk<CR>
 map <F6> :vimgrep <cword> *.cpp *.h<CR>
 map <F7> :vimgrep <cword> **/*.h **/*.cpp<CR>
+map <C-J> :call yapf#YAPF()<cr>
+imap <C-J> <c-o>:call yapf#YAPF()<cr>
 
 let g:airline_theme='bubblegum'
 let g:airline#extensions#hunks#enabled = 0
@@ -95,10 +98,8 @@ augroup vimrcEx
     au!
     autocmd FileType text setlocal textwidth=78
     autocmd FileType python set omnifunc=pythoncomplete#Complete
-    autocmd FileType python set ts=4 sts=4 sw=4 expandtab
-	autocmd FileType python set textwidth=79 nowrap
-	autocmd FileType c,cpp,h set ts=4 sw=4 sts=4 noexpandtab
-	autocmd FileType c,cpp,h set cinoptions+=g0-N-s
+    autocmd FileType python set ts=4 sts=4 sw=4 expandtab textwidth=0 nowrap
+	autocmd FileType c,cpp,h set ts=4 sw=4 sts=4 noexpandtab cinoptions+=g0-N-s
     autocmd BufReadPost *
                 \ if line("'\"") > 1 && line("'\"") <= line("$") |
                 \   exe "normal! g`\"" |
