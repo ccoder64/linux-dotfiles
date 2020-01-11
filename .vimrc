@@ -37,35 +37,35 @@ set termencoding=utf-8
 set ff=unix
 
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tyru/open-browser.vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'bling/vim-airline'
-Plugin 'majutsushi/tagbar'
-"Plugin 'SirVer/ultisnips'
-Plugin 'airblade/vim-gitgutter'
-"Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'tsaleh/vim-tmux'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'fholgado/minibufexpl.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'taglist.vim'
-Plugin 'a.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'vim-scripts/cpp.vim--Skvirsky'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
-"Plugin 'fatih/vim-go'
-"Plugin 'Valloric/YouCompleteMe'
+call plug#begin('~/.vim/plugged')
 
-call vundle#end()
+Plug 'vimscript/a.vim'
+Plug 'vimscript/taglist.vim'
+Plug 'majutsushi/tagbar'
+Plug 'mileszs/ack.vim'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'fholgado/minibufexpl.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'bling/vim-airline'
+Plug 'airblade/vim-gitgutter'
+Plug 'tsaleh/vim-tmux'
+Plug 'junegunn/vim-easy-align'
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/nerdcommenter'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'google/yapf', { 'rtp': 'plugins/vim' }
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+
+" Plug 'tyru/open-browser.vim'
+" Plug 'hynek/vim-python-pep8-indent'
+" Plug 'SirVer/ultisnips'
+" Plug 'fatih/vim-go'
+" Plug 'Valloric/YouCompleteMe'
+
+call plug#end()
+
 filetype plugin indent on
 syntax enable
 
@@ -118,5 +118,6 @@ if executable('ag')
 	let g:ctrlp_use_caching = 0
 	let g:ackprg = 'ag --vimgrep'
 endif
-nnoremap <C-G> :Ack<CR>
 
+nnoremap <C-G> :Ack<CR>
+let g:Lf_ShortcutF = "<C-P>"
