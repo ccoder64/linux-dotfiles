@@ -40,8 +40,8 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'vimscript/a.vim'
-Plug 'vimscript/taglist.vim'
+Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/taglist.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'jlanzarotta/bufexplorer'
@@ -98,8 +98,10 @@ augroup vimrcEx
     au!
     autocmd FileType text setlocal textwidth=78
     autocmd FileType python set omnifunc=pythoncomplete#Complete
-    autocmd FileType python set ts=4 sts=4 sw=4 expandtab textwidth=0 nowrap
-	autocmd FileType c,cpp,h set ts=4 sw=4 sts=4 noexpandtab cinoptions+=g0-N-s
+    autocmd FileType python set ts=4 sts=4 sw=4 expandtab
+	autocmd FileType python set textwidth=0 nowrap
+	autocmd FileType c,cpp,h set ts=4 sw=4 sts=4 noexpandtab
+	autocmd FileType c,cpp,h set cinoptions+=g0-N-s
     autocmd BufReadPost *
                 \ if line("'\"") > 1 && line("'\"") <= line("$") |
                 \   exe "normal! g`\"" |
