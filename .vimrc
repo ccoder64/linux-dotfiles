@@ -38,6 +38,8 @@ set ff=unix
 
 filetype off
 
+set tags=~/.tags,.tags
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-scripts/a.vim'
@@ -57,6 +59,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'google/yapf', { 'rtp': 'plugins/vim' }
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'rhysd/vim-clang-format'
 
 " Plug 'tyru/open-browser.vim'
 " Plug 'hynek/vim-python-pep8-indent'
@@ -87,8 +90,6 @@ nmap mn :GitGutterPrevHunk<CR>
 nmap mr :GitGutterRevertHunk<CR>
 map <F6> :vimgrep <cword> *.cpp *.h<CR>
 map <F7> :vimgrep <cword> **/*.h **/*.cpp<CR>
-map <C-J> :call yapf#YAPF()<cr>
-imap <C-J> <c-o>:call yapf#YAPF()<cr>
 
 let g:airline_theme='bubblegum'
 let g:airline#extensions#hunks#enabled = 0
@@ -98,10 +99,13 @@ augroup vimrcEx
     au!
     autocmd FileType text setlocal textwidth=78
     autocmd FileType python set omnifunc=pythoncomplete#Complete
-    autocmd FileType python set ts=4 sts=4 sw=4 expandtab
-	autocmd FileType python set textwidth=0 nowrap
-	autocmd FileType c,cpp,h set ts=4 sw=4 sts=4 noexpandtab
-	autocmd FileType c,cpp,h set cinoptions+=g0-N-s
+    autocmd FileType python set ts=4 sts=4 sw=4 expandtab textwidth=0 nowrap
+    autocmd FileType c,cpp,h set ts=4 sw=4 sts=4 expandtab cinoptions+=g0-N-s
+	autocmd FileType c,cpp,objc map <C-J> :<C-u>ClangFormat<CR>
+	autocmd FileType c,cpp,objc imap <C-J> :ClangFormat<CR>
+    autocmd FileType python map <C-J> :call yapf#YAPF()<cr>
+    autocmd FileType python imap <C-J> :call yapf#YAPF()<cr>
+
     autocmd BufReadPost *
                 \ if line("'\"") > 1 && line("'\"") <= line("$") |
                 \   exe "normal! g`\"" |
