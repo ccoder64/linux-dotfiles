@@ -58,7 +58,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'google/yapf', { 'rtp': 'plugins/vim' }
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+"Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'rhysd/vim-clang-format'
 
 " Plug 'tyru/open-browser.vim'
