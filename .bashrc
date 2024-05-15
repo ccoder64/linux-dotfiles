@@ -32,6 +32,9 @@ export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
 export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
+export LESS='-R'
+export LESSOPEN='|~/.lessfilter %s'
+
 
 export EDITOR=vim
 export HISTSIZE=30000
